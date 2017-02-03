@@ -28,11 +28,8 @@
     var rMain = 0
     var rot = 0
     var rot2 = Math.random() * 1000
-
     ct = new Centi('ct')
     ct.init(canvas, null)
-    var mouseDown = mouseDown
-    var mouseUp = onMouseUp
     ct.setupFunc = init
     ct.drawFunc = draw
     ct.start()
@@ -44,7 +41,6 @@
       ct.bg(0)
       ct.x = ct.cx + rMain
       ct.y = ct.cy
-      ct.time = 1300
     }
 
     function draw () {
@@ -53,20 +49,18 @@
       ct.strk(50)
 
       // tracers
-      ct.me(ct.mx / 8, ct.my /16, ct.w, ct.h, -4.1, -6.9, ct.w + 1, ct.h + 1)
-      ct.noise(ct.mx,ct.my)
-
+      ct.me(0, 0, ct.w, ct.h, -0.1, -3.9, ct.w + 1, ct.h + 1)
       ct.col(0, 0, 0, 5)
       ct.fill(255)
-      // ct.rect(0, 0, ct.w, ct.h)
+      ct.rect(0, 0, ct.w, ct.h)
       // glowy
-      ct.bm(20)
+      ct.bm(20);
       ct.col(Math.sin(rot) * 255, 80, Math.cos(rot) * 255);
       ct.strk(50);
       // ooh... hexagons?
-      // rHex = ct.nz(rot, rot2) * 50 + 25
-      // ct.hex(ct.x, ct.y, rHex, rot);
-      // rMain = ct.nz(rot2, rot) * ct.w;
+      rHex = ct.nz(rot, rot2) * 50 + 25
+      ct.hex(ct.x, ct.y, rHex, rot);
+      rMain = ct.nz(rot2, rot) * ct.w;
 
 
       // weee
@@ -77,18 +71,14 @@
       for (ct.i = 0; ct.i < 20; ct.i++) {
         ct.ww = ((ct.c + ct.i) % 100 * 25)
         ct.x = (-ct.ww / 2)
-        ct.oval(ct.x + ct.cx, ct.x + ct.cy, ct.ww, ct.ww)
+        ct.rect(ct.x + ct.cx, ct.x + ct.cy, ct.ww, ct.ww)
       }
       // ct.glitch(ct.rnd(50), ct.rnd(100), ct.rnd(10), ct.rnd(10));
       ct.crash(ct.rnd(1, 2))
       // ct.col(ct.rnd(4, 8))
-      ct.oval(ct.cx, ct.cy, ct.h / 1.5, ct.rnd(4, 12))
+      ct.rect(ct.cx, ct.cy, ct.h / 1.5, ct.rnd(4, 12))
       // ct.glitch(10,20,42,82)
     }
-
-    function onMouseUp(e) {
-       moveOval(ct.mx, ct.my);
-   }
 
     function update () {
       requestAnimationFrame(update)

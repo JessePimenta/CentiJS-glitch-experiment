@@ -44,7 +44,6 @@
       ct.bg(0)
       ct.x = ct.cx + rMain
       ct.y = ct.cy
-      ct.time = 1300
     }
 
     function draw () {
@@ -53,20 +52,19 @@
       ct.strk(50)
 
       // tracers
-      ct.me(ct.mx / 8, ct.my /16, ct.w, ct.h, -4.1, -6.9, ct.w + 1, ct.h + 1)
-      ct.noise(ct.mx,ct.my)
+      ct.me(0, 0, ct.w, ct.h, -4.1, -6.9, ct.w + 1, ct.h + 1)
 
       ct.col(0, 0, 0, 5)
       ct.fill(255)
-      // ct.rect(0, 0, ct.w, ct.h)
+      ct.rect(0, 0, ct.w, ct.h)
       // glowy
-      ct.bm(20)
+      ct.bm(20);
       ct.col(Math.sin(rot) * 255, 80, Math.cos(rot) * 255);
       ct.strk(50);
       // ooh... hexagons?
-      // rHex = ct.nz(rot, rot2) * 50 + 25
-      // ct.hex(ct.x, ct.y, rHex, rot);
-      // rMain = ct.nz(rot2, rot) * ct.w;
+      rHex = ct.nz(rot, rot2) * 50 + 25
+      ct.hex(ct.x, ct.y, rHex, rot);
+      rMain = ct.nz(rot2, rot) * ct.w;
 
 
       // weee
