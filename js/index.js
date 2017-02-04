@@ -45,6 +45,7 @@
       ct.x = ct.cx + rMain
       ct.y = ct.cy
       ct.time = 1300
+      ct.b3d = true
     }
 
     function draw () {
@@ -54,10 +55,10 @@
 
       // tracers
       ct.me(ct.mx / 8, ct.my /16, ct.w, ct.h, -4.1, -6.9, ct.w + 1, ct.h + 1)
-      ct.noise(ct.mx,ct.my)
+      ct.noise((1+Math.sqrt(5))/2)
 
       ct.col(0, 0, 0, 5)
-      ct.fill(255)
+      // ct.fill(255)
       // ct.rect(0, 0, ct.w, ct.h)
       // glowy
       ct.bm(20)

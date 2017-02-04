@@ -12,8 +12,61 @@
 </head>
 
 <body>
-  <script src="http://cdn.rawgit.com/satcy/centiscript/master/js/release/centi.min.0.4.9.js"></script>
+  <script id="vertexShader" type="x-shader/x-vertex">
+          varying vec2 vUv;
+
+    void main()	{
+        vUv = uv;
+
+      gl_Position = vec4( position, 0.20 );
+
+    }
+
+  </script>
+  <script id="fragmentShader" type="x-shader/x-fragment">
+            varying vec2 vUv;
+			uniform vec2 resolution;
+			uniform float time;
+			uniform sampler2D canvasSource;
+
+
+
+			void main()	{
+
+        vec4 color1 = vec4(0.9, 0.0, 0.0, 1.0); // Red
+        vec4 color2 = vec4(0.0, 0.3, 0.2, 0.50); // Blue
+        vec4 color3 = vec4(0.2, 0.18, 0.35, 0.350); // other
+                vec2 sp = gl_FragCoord.yx / resolution.yy - vec2(0.5, 0.5);
+
+                float col = texture2D(canvasSource, vUv).r;
+                //vec2 sp = vec2(texture2D(canvasSource, gl_FragCoord).r, texture2D(canvasSource, gl_FragCoord).g);
+                // change line below values to affect shapes
+                vec2 p = (.98 * 0.98 * sp) * 22.0 - vec2(0.50);
+                vec2 i = p;
+                float c = 1.0;
+
+                float inten = 0.91;
+
+                for(int n = 0; n < 22; n++){
+                    float t = time * (0.920 - (2.0 / float(n + 7)));
+                    i = p + vec2(cos(t - i.x) + sin(t + i.y), sin(t - i.y) + cos(t + i.x));
+		            c += 12.0/length(vec2(p.x / (sin(i.x/t)/inten),p.y / (cos(i.y+t)/inten)));
+                }
+
+                c /= float(75);
+                c = 1.28 - sqrt(c);
+                //c *= .18;
+
+
+                gl_FragColor = vec4(vec3(c*c*c*col) , 0.22)  * color1 + color3 * time / time;
+			}
+
+		</script>
+
 <canvas id='c'></canvas>
+<script src="http://cdn.rawgit.com/satcy/centiscript/master/js/release/centi.min.0.4.9.js"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js'></script>
 
     <script src="js/index.js"></script>
 
