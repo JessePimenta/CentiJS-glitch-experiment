@@ -53,10 +53,10 @@
       rot += 0.01
       rot2 += 0.025
       ct.strk(50)
+      ct.shrink(10,5)
 
       // tracers
-      ct.me(ct.mx / 8, ct.my /16, ct.w, ct.h, -4.1, -6.9, ct.w + 1, ct.h + 1)
-      ct.shrink(1,2)
+      ct.me(ct.mx / 8, ct.my /16, ct.w, ct.h, 4.1, 6.9, ct.w + 1, ct.h + 1)
 
       ct.col(0, 20,255 , 1)
       // ct.grad(0,20,255,1)
@@ -80,15 +80,18 @@
       for (ct.i = 0; ct.i < 20; ct.i++) {
         ct.ww = ((ct.c + ct.i) % 100 * 25)
         ct.x = (-ct.ww / 2)
-        ct.oval(ct.x + ct.cx, ct.x + ct.cy, ct.ww, ct.ww)
+        // ct.oval(ct.x + ct.cx, ct.x + ct.cy, ct.ww, ct.ww)
       }
       // ct.glitch(ct.rnd(50), ct.rnd(100), ct.rnd(10), ct.rnd(10));
-      ct.crash(ct.rnd(1, 2))
+      // ct.crash(ct.rnd(1, 2))
       // ct.col(ct.rnd(4, 8))
       ct.oval(ct.cx, ct.cy, ct.h / 1.5, ct.rnd(4, 12))
       // ct.glitch(10,20,42,82)
     }
 
+    function onMouseUp(e) {
+       moveOval(ct.mx, ct.my);
+   }
 
     function update () {
       requestAnimationFrame(update)

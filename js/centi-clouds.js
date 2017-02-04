@@ -53,10 +53,10 @@
       rot += 0.01
       rot2 += 0.025
       ct.strk(50)
+      ct.mosaic(1,2)
 
       // tracers
-      ct.me(ct.mx / 8, ct.my /16, ct.w, ct.h, -4.1, -6.9, ct.w + 1, ct.h + 1)
-      ct.shrink(1,2)
+      ct.me(ct.mx / 8, ct.my /16, ct.w, ct.h, -40.1, -60.9, ct.w + 1, ct.h + 1)
 
       ct.col(0, 20,255 , 1)
       // ct.grad(0,20,255,1)
@@ -89,6 +89,9 @@
       // ct.glitch(10,20,42,82)
     }
 
+    function onMouseUp(e) {
+       moveOval(ct.mx, ct.my);
+   }
 
     function update () {
       requestAnimationFrame(update)
